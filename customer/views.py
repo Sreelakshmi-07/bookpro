@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from book_form.models import Books
-from django.views.generic import View
+from django.views.generic import View,ListView
 from customer.forms import UserRegistrationForm, LoginForm,PasswordRestForm
 from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
-
+from customer.models import Carts
 
 # Create your views here.
 class CustomerIndex(View):
@@ -88,4 +88,20 @@ class PasswordRestView(View):
                 return render(request, 'password_reset.html', {'form': form})
         else:
             return render(request, 'password_reset.html', {'form': form})
+
+def add_to_cart(request,id):
+    book = Books.objects.get(id = id)
+    user = request.user
+    cart = Carts(product = book,
+                 user = user)
+    cart.save()
+    return redirect("customerhome")
+
+class View_my_Cart(ListView):
+    model = Carts
+    template_name = "mycart.html"
+    context_object_name = "carts"
+
+
+
 

@@ -18,6 +18,7 @@
                 <li class="list-group-item">Author: {{book.author}}</li>
                 <li class="list-group-item">Price: {{book.amount}}</li>
                 <li class="list-group-item">Available Copies: {{book.copies}}</li>
+                <a href="{%url 'addtocart' book.id%}" class="btn btn-outline-primary">Add to Cart</a>
             </ul>
         </div>
     </div>

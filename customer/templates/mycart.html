@@ -1,0 +1,17 @@
+{%extends 'cbase.html'%}
+{%block body_block%}
+<div class="shadow p-1  bg-body rounded">
+    <h1>
+        <center>BOOK STORE</center>
+    </h1>
+</div>
+
+<div class="row">
+    {%for cart in carts%}
+    <div class="col-6 col-md-4">
+       {{cart}}
+    </div>
+    {%endfor%}
+</div>
+
+{%endblock%}
